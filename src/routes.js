@@ -30,6 +30,14 @@ export const routes = [
         handler: (req, res) => {
             const { title, description } = req.body;
 
+            if (!description) {
+                return res.end(JSON.stringify({ message: "Descrição da tarefa é obrigatória" }));
+            }
+
+            if (!title) {
+                return res.end(JSON.stringify({ message: "Título da tarefa é obrigatório" }));
+            }
+
             const task = {
                 id: randomUUID(),
                 title,
